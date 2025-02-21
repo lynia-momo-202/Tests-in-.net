@@ -418,6 +418,42 @@
         "build": {
           "build/net6.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "BusinessLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BusinessLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BusinessLayer.dll": {}
+        }
+      },
+      "Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Core.dll": {}
+        }
+      },
+      "DataLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DataLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DataLayer.dll": {}
+        }
       }
     }
   },
@@ -892,10 +928,28 @@
         "xunit.runner.visualstudio.3.0.2.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "BusinessLayer/1.0.0": {
+      "type": "project",
+      "path": "../BusinessLayer/BusinessLayer.csproj",
+      "msbuildProject": "../BusinessLayer/BusinessLayer.csproj"
+    },
+    "Core/1.0.0": {
+      "type": "project",
+      "path": "../Core/Core.csproj",
+      "msbuildProject": "../Core/Core.csproj"
+    },
+    "DataLayer/1.0.0": {
+      "type": "project",
+      "path": "../DataLayer/DataLayer.csproj",
+      "msbuildProject": "../DataLayer/DataLayer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "BusinessLayer >= 1.0.0",
+      "Core >= 1.0.0",
+      "DataLayer >= 1.0.0",
       "FluentAssertions >= 8.0.0",
       "Microsoft.NET.Test.Sdk >= 17.13.0",
       "xunit >= 2.9.3",
@@ -934,7 +988,17 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Projets\\test\\Tests-in-.net\\FluentAssertion\\BusinessLayer\\BusinessLayer.csproj": {
+              "projectPath": "D:\\Projets\\test\\Tests-in-.net\\FluentAssertion\\BusinessLayer\\BusinessLayer.csproj"
+            },
+            "D:\\Projets\\test\\Tests-in-.net\\FluentAssertion\\Core\\Core.csproj": {
+              "projectPath": "D:\\Projets\\test\\Tests-in-.net\\FluentAssertion\\Core\\Core.csproj"
+            },
+            "D:\\Projets\\test\\Tests-in-.net\\FluentAssertion\\DataLayer\\DataLayer.csproj": {
+              "projectPath": "D:\\Projets\\test\\Tests-in-.net\\FluentAssertion\\DataLayer\\DataLayer.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

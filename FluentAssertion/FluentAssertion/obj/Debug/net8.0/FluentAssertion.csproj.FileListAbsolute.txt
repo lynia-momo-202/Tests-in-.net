@@ -209,3 +209,10 @@ D:\Projets\test\Tests-in-.net\FluentAssertion\FluentAssertion\obj\Debug\net8.0\r
 D:\Projets\test\Tests-in-.net\FluentAssertion\FluentAssertion\obj\Debug\net8.0\FluentAssertion.pdb
 D:\Projets\test\Tests-in-.net\FluentAssertion\FluentAssertion\obj\Debug\net8.0\FluentAssertion.genruntimeconfig.cache
 D:\Projets\test\Tests-in-.net\FluentAssertion\FluentAssertion\obj\Debug\net8.0\ref\FluentAssertion.dll
+D:\Projets\test\Tests-in-.net\FluentAssertion\FluentAssertion\bin\Debug\net8.0\.msCoverageSourceRootsMapping_FluentAssertion
+D:\Projets\test\Tests-in-.net\FluentAssertion\FluentAssertion\bin\Debug\net8.0\BusinessLayer.dll
+D:\Projets\test\Tests-in-.net\FluentAssertion\FluentAssertion\bin\Debug\net8.0\Core.dll
+D:\Projets\test\Tests-in-.net\FluentAssertion\FluentAssertion\bin\Debug\net8.0\DataLayer.dll
+D:\Projets\test\Tests-in-.net\FluentAssertion\FluentAssertion\bin\Debug\net8.0\BusinessLayer.pdb
+D:\Projets\test\Tests-in-.net\FluentAssertion\FluentAssertion\bin\Debug\net8.0\Core.pdb
+D:\Projets\test\Tests-in-.net\FluentAssertion\FluentAssertion\bin\Debug\net8.0\DataLayer.pdb
