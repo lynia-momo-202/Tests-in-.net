@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FluentAssertion")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79faa8bc27cdea222c986693d15ba6040a9e3463")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ae1d6a1f041428ef1ccd0eec2b2d2420be5c523")]
 [assembly: System.Reflection.AssemblyProductAttribute("FluentAssertion")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FluentAssertion")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
