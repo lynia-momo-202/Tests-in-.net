@@ -7,11 +7,13 @@
         [Fact]
         public void CanOpen_ChestIsLockedAndHasKey_ReturnsTrue()
         {
-            
-            var chest = new TreasureChest(true);
+            // Arange
+            var sut = new TreasureChest(true);
 
-            var result = chest.CanOpen(true);
+            // Act
+            var result = sut.CanOpen(true);
 
+            // Assert
             Assert.True(result);
         }
     }
