@@ -1,6 +1,6 @@
 ﻿namespace GameLibrary;
 
-public class TreasureChest
+internal class TreasureChest
 {
     public TreasureChest(bool isLocked)
     {
