@@ -1,12 +1,17 @@
-﻿namespace GameLibrary.UnitTests
+﻿using Xunit.Abstractions;
+
+namespace GameLibrary.UnitTests
 {
     public class TreasureChestTests : IDisposable
     {
         private readonly Stack<TreasureChest> chests;
+        private readonly ITestOutputHelper output;
 
-        public TreasureChestTests()
+        public TreasureChestTests(ITestOutputHelper output)
         {
             chests = new();
+            this.output = output;
+            output.WriteLine($"Initial chest count:{chests.Count}");
         }
 
         //MethodName_StateUnderTest_ExpectedBehavior
@@ -17,6 +22,7 @@
             // Arange
             var sut = new TreasureChest(true);
             chests.Push(sut);//ajouter le system test dans la pile
+            output.WriteLine($"Chest count: {chests.Count}");
 
             // Act
             var result = sut.CanOpen(true);
@@ -32,6 +38,7 @@
             // Arrange
             var sut = new TreasureChest(true);
             chests.Push(sut);
+            output.WriteLine($"Chest count: {chests.Count}");
 
             // Act
             var result = sut.CanOpen(false);
@@ -47,6 +54,7 @@
             //Arrange
             var sut = new TreasureChest(false);
             chests.Push(sut);
+            output.WriteLine($"Chest count: {chests.Count}");
 
             //Act
             var result = sut.CanOpen(true);
@@ -62,6 +70,7 @@
             //Arrange
             var sut = new TreasureChest(false);
             chests.Push(sut);
+            output.WriteLine($"Chest count: {chests.Count}");
 
             //Act
             var result = sut.CanOpen(false);
@@ -75,6 +84,10 @@
         {
             chests.Pop();
             Assert.Empty(chests);
+            output.WriteLine($"final chest count: {chests.Count}");
         }
     }
 }
+/// lors de l'execution des tests .net , on ne retoune rien .
+/// pour faciliter le retour des element stocke dans le outout apres ou pdt un test , on utilise la commande
+/// dotnet test --logger "console;verbosity=detailed"
