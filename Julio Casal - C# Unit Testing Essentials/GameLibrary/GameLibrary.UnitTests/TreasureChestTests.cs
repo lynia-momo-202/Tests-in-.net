@@ -16,69 +16,92 @@ namespace GameLibrary.UnitTests
 
         //MethodName_StateUnderTest_ExpectedBehavior
 
-        [Fact]
-        public void CanOpen_ChestIsLockedAndHasKey_ReturnsTrue()
+        [Theory]
+        [InlineData(true, true, true)]
+        [InlineData(true, false, false)]
+        [InlineData(false, true, true)]
+        [InlineData(false, false, true)]
+        public void CanOpen_WhenCalled_ReturnsExpcetedOutcome(
+            bool isLocked,
+            bool haskey,
+            bool expected)
         {
             // Arange
-            var sut = new TreasureChest(true);
-            chests.Push(sut);//ajouter le system test dans la pile
+            var sut = new TreasureChest(isLocked);
+            chests.Push(sut);
             output.WriteLine($"Chest count: {chests.Count}");
 
             // Act
-            var result = sut.CanOpen(true);
+            var actual = sut.CanOpen(haskey);
 
             // Assert
-            Assert.True(result);
-            Assert.Single(chests);//verifier qu'il y a qu'un seul elmt dans la pile
-        }
-
-        [Fact]
-        public void ConOpen_ChestIsLockedAndHasNoKey_ReturnsFalse()
-        {
-            // Arrange
-            var sut = new TreasureChest(true);
-            chests.Push(sut);
-            output.WriteLine($"Chest count: {chests.Count}");
-
-            // Act
-            var result = sut.CanOpen(false);
-
-            // assert
-            Assert.False(result);
+            Assert.Equal(expected, actual);
             Assert.Single(chests);
         }
 
-        [Fact]
-        public void CanOpen_ChestInUnLockedAndHasKey_ReturnsTrue()
-        {
-            //Arrange
-            var sut = new TreasureChest(false);
-            chests.Push(sut);
-            output.WriteLine($"Chest count: {chests.Count}");
+        //[Fact]
+        //public void CanOpen_ChestIsLockedAndHasKey_ReturnsTrue()
+        //{
+        //    // Arange
+        //    var sut = new TreasureChest(true);
+        //    chests.Push(sut);//ajouter le system test dans la pile
+        //    output.WriteLine($"Chest count: {chests.Count}");
 
-            //Act
-            var result = sut.CanOpen(true);
+        //    // Act
+        //    var result = sut.CanOpen(true);
 
-            //assert
-            Assert.True(result);
-            Assert.Single(chests);
-        }
+        //    // Assert
+        //    Assert.True(result);
+        //    Assert.Single(chests);//verifier qu'il y a qu'un seul elmt dans la pile
+        //}
 
-        [Fact]
-        public void CanOpen_ChestInUnLockedAndHasNoKey_ReturnsTrue()
-        {
-            //Arrange
-            var sut = new TreasureChest(false);
-            chests.Push(sut);
-            output.WriteLine($"Chest count: {chests.Count}");
+        //[Fact]
+        //public void ConOpen_ChestIsLockedAndHasNoKey_ReturnsFalse()
+        //{
+        //    // Arrange
+        //    var sut = new TreasureChest(true);
+        //    chests.Push(sut);
+        //    output.WriteLine($"Chest count: {chests.Count}");
 
-            //Act
-            var result = sut.CanOpen(false);
+        //    // Act
+        //    var result = sut.CanOpen(false);
 
-            //assert
-            Assert.True(result);
-            Assert.Single(chests);
-        }
+        //    // assert
+        //    Assert.False(result);
+        //    Assert.Single(chests);
+        //}
+
+        //[Fact]
+        //public void CanOpen_ChestInUnLockedAndHasKey_ReturnsTrue()
+        //{
+        //    //Arrange
+        //    var sut = new TreasureChest(false);
+        //    chests.Push(sut);
+        //    output.WriteLine($"Chest count: {chests.Count}");
+
+        //    //Act
+        //    var result = sut.CanOpen(true);
+
+        //    //assert
+        //    Assert.True(result);
+        //    Assert.Single(chests);
+        //}
+
+        //[Fact]
+        //public void CanOpen_ChestInUnLockedAndHasNoKey_ReturnsTrue()
+        //{
+        //    //Arrange
+        //    var sut = new TreasureChest(false);
+        //    chests.Push(sut);
+        //    output.WriteLine($"Chest count: {chests.Count}");
+
+        //    //Act
+        //    var result = sut.CanOpen(false);
+
+        //    //assert
+        //    Assert.True(result);
+        //    Assert.Single(chests);
+        //}
 
         public void Dispose()
         {
