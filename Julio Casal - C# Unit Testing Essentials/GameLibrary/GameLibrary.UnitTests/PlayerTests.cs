@@ -101,5 +101,33 @@ namespace GameLibrary.UnitTests
             act.Should().Throw<ArgumentException>();
                                 //.WithMessage("");
         }
+
+        [Fact]
+        public void IncreaseLevel_WhenCalled_RaisesLevelUpEvent()
+        {
+            // Arrange
+            var sut = new Player("Alice", 1, DateTime.Now);
+            using var monitoredSut = sut.Monitor();
+            //Résumé:
+            // Démarre la surveillance de eventSource pour ses événements.
+            //
+            // Paramètres :
+            // eventSource :
+            // L'objet pour lequel surveiller les événements.
+
+            // Act
+            sut.IncreaseLevel();
+
+            // Assert
+            sut.Level.Should().Be(2);
+            monitoredSut.Should().Raise(nameof(sut.LevelUp));
+            // Résumé :
+            // Affirme qu'un objet a déclenché un événement particulier au moins une fois.
+            //
+            // Paramètres :
+            // eventName :
+            // Le nom de l'événement qui aurait dû être déclenché.
+
+        }
     }
 }
