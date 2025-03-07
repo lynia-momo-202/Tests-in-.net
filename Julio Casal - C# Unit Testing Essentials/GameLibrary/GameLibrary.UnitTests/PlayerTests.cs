@@ -88,5 +88,18 @@ namespace GameLibrary.UnitTests
                 item =>  item.Id == 101 && item.Name == "Sword");
         }
 
+        [Fact]
+        public void Greet_NullOrEmptyGreeting_ThrowArgumentException()
+        {
+            // Arange
+            var sut = new Player("Lynia", 1, DateTime.Now);
+
+            // Act
+            Action act = () => sut.Greet("");
+
+            // Assert
+            act.Should().Throw<ArgumentException>();
+                                //.WithMessage("");
+        }
     }
 }
