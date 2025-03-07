@@ -69,5 +69,24 @@ namespace GameLibrary.UnitTests
             sut.JoinDate.Should().BeCloseTo(currentDate, TimeSpan.FromMilliseconds(500));
             sut.JoinDate.Should().BeWithin(TimeSpan.FromMilliseconds(500)).Before(currentDate);
         }
+
+        [Fact]
+        public void AddItemToInventory_WithValidItem_AddsTheItem()
+        {
+            // Arrange
+            var sut = new Player("Lynia", 1, DateTime.Now);
+            var item = new InventoryItem(101, "Sword", "A sharp blade.");
+
+            // Act
+            sut.AddItemToInventory(item);
+
+            // Assert
+            sut.InventoryItems.Should().HaveCount(1);
+            sut.InventoryItems.Should().NotBeEmpty();
+            sut.InventoryItems.Should().Contain(item);
+            sut.InventoryItems.Should().ContainSingle(
+                item =>  item.Id == 101 && item.Name == "Sword");
+        }
+
     }
 }
