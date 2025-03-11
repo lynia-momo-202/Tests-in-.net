@@ -2,7 +2,7 @@
 
 namespace GameLibrary;
 
-public class FileBasedPlayerStatisticsService
+public class FileBasedPlayerStatisticsService : IPlayerStatisticsService
 {
     private readonly string filePath;
 
