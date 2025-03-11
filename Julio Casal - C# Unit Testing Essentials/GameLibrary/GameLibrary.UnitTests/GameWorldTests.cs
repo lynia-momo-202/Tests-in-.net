@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using GameLibrary.UnitTests.Fakes;
+using NSubstitute;
 
 namespace GameLibrary.UnitTests
 {
@@ -11,14 +11,18 @@ namespace GameLibrary.UnitTests
             // Arrange
             var player = new Player("Alice", 1, new DateTime(2020, 1, 1));
 
-            var playerStatisticsService = new FakePlayerStatisticsService();
+            //var playerStatisticsService = new FakePlayerStatisticsService();
             var stats = new PlayerStatistics
             {
                 PlayerName = player.Name,
                 GamesPlayed = 10,
                 TotalScore = 1000
             };
-            playerStatisticsService.UpdatePlayerStatistics(stats);
+            //playerStatisticsService.UpdatePlayerStatistics(stats);
+
+            var statisticServiceStub = Substitute.For<IPlayerStatisticsService>();
+            statisticServiceStub.GetPlayerStatistics(player.Name)
+                                .Returns(stats);        
 
             var expected = new PlayerReportDto
             (
@@ -30,7 +34,7 @@ namespace GameLibrary.UnitTests
                stats.TotalScore / stats.GamesPlayed
             );
 
-            var sut = new GameWorld(playerStatisticsService);
+            var sut = new GameWorld(statisticServiceStub);
 
             // Act
             var actual = sut.GetPlayerReport(player);
