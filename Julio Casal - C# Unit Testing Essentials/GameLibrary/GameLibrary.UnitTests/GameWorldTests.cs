@@ -48,5 +48,37 @@ namespace GameLibrary.UnitTests
             //report.AverageScore.Should().Be(100);
             actual.Should().BeEquivalentTo(expected);
         }
+        [Fact]
+        public void RecordPlayerGameWin_ValidPlayerandScore_UpdatesPlayerStatistics()
+        {
+            // Arrange
+            var player = new Player("Alice", 10, new DateTime(2020, 1, 1));
+
+            var stats = new PlayerStatistics
+            {
+                PlayerName = player.Name,
+                GamesPlayed = 10,
+                TotalScore = 1000
+            };
+
+            var statisticServiceMock = Substitute.For<IPlayerStatisticsService>();
+            statisticServiceMock.GetPlayerStatistics(player.Name)
+                .Returns(stats);
+
+            var sut = new GameWorld(statisticServiceMock);
+
+            // Act
+            sut.RecordPlayerGameWin(player,20);
+
+            // Assert
+            statisticServiceMock.Received()
+                //.UpdatePlayerStatistics(Arg.Any<PlayerStatistics>());
+                .UpdatePlayerStatistics(Arg.Is<PlayerStatistics>(stats =>
+                stats.PlayerName == player.Name &&
+                stats.GamesPlayed == 11 &&
+                stats.TotalScore == 1020
+                ));
+
+        }
     }
 }
