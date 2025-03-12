@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Moq;
 using NSubstitute;
 
 namespace GameLibrary.UnitTests
@@ -20,9 +21,13 @@ namespace GameLibrary.UnitTests
             };
             //playerStatisticsService.UpdatePlayerStatistics(stats);
 
-            var statisticServiceStub = Substitute.For<IPlayerStatisticsService>();
-            statisticServiceStub.GetPlayerStatistics(player.Name)
-                                .Returns(stats);        
+            //var statisticServiceStub = Substitute.For<IPlayerStatisticsService>();
+            //statisticServiceStub.GetPlayerStatistics(player.Name)
+            //                    .Returns(stats);        
+
+            var statisticServiceStub = new Mock<IPlayerStatisticsService>();
+            statisticServiceStub.Setup(s => s.GetPlayerStatistics(player.Name))
+            .Returns(stats);
 
             var expected = new PlayerReportDto
             (
@@ -34,7 +39,7 @@ namespace GameLibrary.UnitTests
                stats.TotalScore / stats.GamesPlayed
             );
 
-            var sut = new GameWorld(statisticServiceStub);
+            var sut = new GameWorld(statisticServiceStub.Object);
 
             // Act
             var actual = sut.GetPlayerReport(player);
@@ -61,24 +66,31 @@ namespace GameLibrary.UnitTests
                 TotalScore = 1000
             };
 
-            var statisticServiceMock = Substitute.For<IPlayerStatisticsService>();
-            statisticServiceMock.GetPlayerStatistics(player.Name)
-                .Returns(stats);
+            //var statisticServiceMock = Substitute.For<IPlayerStatisticsService>();
+            //statisticServiceMock.GetPlayerStatistics(player.Name)
+            //    .Returns(stats);
+            var statisticServiceMock = new Mock<IPlayerStatisticsService>();
+            statisticServiceMock.Setup(s => s.GetPlayerStatistics(player.Name))
+            .Returns(stats);
 
-            var sut = new GameWorld(statisticServiceMock);
+            var sut = new GameWorld(statisticServiceMock.Object);
 
             // Act
             sut.RecordPlayerGameWin(player,20);
 
             // Assert
-            statisticServiceMock.Received()
-                //.UpdatePlayerStatistics(Arg.Any<PlayerStatistics>());
-                .UpdatePlayerStatistics(Arg.Is<PlayerStatistics>(stats =>
-                stats.PlayerName == player.Name &&
-                stats.GamesPlayed == 11 &&
-                stats.TotalScore == 1020
-                ));
-
+            //statisticServiceMock.Received()
+            //    //.UpdatePlayerStatistics(Arg.Any<PlayerStatistics>());
+            //    .UpdatePlayerStatistics(Arg.Is<PlayerStatistics>(stats =>
+            //    stats.PlayerName == player.Name &&
+            //    stats.GamesPlayed == 11 &&
+            //    stats.TotalScore == 1020
+            //    ));
+            statisticServiceMock.Verify(s => s.UpdatePlayerStatistics(It.Is<PlayerStatistics>(stats =>
+                            stats.PlayerName == player.Name &&
+                            stats.GamesPlayed == 11 &&
+                            stats.TotalScore == 1020
+                            )));
         }
     }
 }
